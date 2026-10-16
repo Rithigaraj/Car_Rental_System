@@ -74,4 +74,4 @@ def create_tables():
 # ---------------- RUN ----------------
 if __name__ == "__main__":
     create_tables()
-    print("✅ Database created successfully!")
+    print("Database created successfully!")

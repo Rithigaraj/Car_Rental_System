@@ -1,8 +1,9 @@
+import os
 from flask import Flask, request, redirect, session, render_template
 from database import create_tables, connect
 
 app = Flask(__name__)
-app.secret_key = "secret123"
+app.secret_key = os.environ.get("SECRET_KEY", "secret123")
 
 create_tables()
 
@@ -206,4 +207,6 @@ def logout():
 
 # ================= RUN =================
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    debug_mode = os.environ.get("FLASK_DEBUG", "False").lower() in ("true", "1")
+    app.run(host="0.0.0.0", port=port, debug=debug_mode)
